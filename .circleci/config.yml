@@ -1,8 +1,18 @@
 version: 2.1
 orbs:
   node: circleci/node@3.0.0
-workflows:
-  node-tests:
-    jobs:
-      - cypress/run
+- run:
+   name: "Install dependencies"
+   command: |
+    npm install
+    
+- save_cache:
+    paths:
+     - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: "Run tests"
+          command: |
+           ENV=qa npm run actions
 
