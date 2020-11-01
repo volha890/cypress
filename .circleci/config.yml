@@ -1,18 +1,11 @@
 version: 2.1
 orbs:
-  node: circleci/node@3.0.0
-- run:
-   name: "Install dependencies"
-   command: |
-    npm install
-    
-- save_cache:
-    paths:
-     - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      - run:
-          name: "Run tests"
-          command: |
-           ENV=qa npm run actions
-
+  # "cypress-io/cypress@1" installs the latest published
+  # version "1.x.y" of the orb. We recommend you then use
+  # the strict explicit version "cypress-io/cypress@1.x.y"
+  # to lock the version and prevent unexpected CI changes
+  cypress: cypress-io/cypress@1
+workflows:
+  build:
+    jobs:
+      - cypress/run # "run" job comes from "cypress" orb
