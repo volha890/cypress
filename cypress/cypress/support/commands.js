@@ -1,14 +1,3 @@
-Cypress.Commands.add('login', (name, password) => {
-
-  cy.get(login.username).type(name);
-  cy.get(login.password).type(password);
-  cy.get(login.button).click();
-});
-
-Cypress.Commands.add('logout', () => {
-  cy.get(menu.logout).click();
-});
-
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
